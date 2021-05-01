@@ -1,19 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
 
-// define the path to the directory with the index file
-app.use(express.static(path.join(__dirname, "..", "client/build")));
+// connect to mongo database
+const DATABASE_URL = "mongodb+srv://arnas:arnasadmin@overflow.bsmn6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const PORT = process.env.PORT || 5000;
 
-// send the index file to the client at the given route, this will be the returned route
-// when the app is built.
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "client/build/index.html"));
-});
-
-// listen for the server
-app.listen(5000, () => console.log("Server is running on port 5000"));
+mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => app.listen(PORT, () => console.log(`Server is running on port ${PORT}`)))
+    .catch((error) => console.log(error.message));

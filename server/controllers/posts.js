@@ -1,6 +1,10 @@
 const express = require('express');
 const Post = require('../models/post');
 
+// Error Codes for HTTP
+// https://www.restapitutorial.com/httpstatuscodes.html
+
+
 // Retrieve the posts inside the database
 // find() takes time, so its made as an asynchronous action
 // if successful return status 200 and json of return, else,
@@ -15,8 +19,18 @@ const getPosts = async (req, res) => {
     }
 }
 
-const createPosts = (req, res) => {
-    res.send("Post created");
+const createPosts = async (req, res) => {
+    const post = req.body;
+
+    const newPost = new Post(post);
+
+    try {
+        await newPost.save();
+
+        res.status(201).json(newPost);
+    } catch (error) {
+        res.status(409).json(error.message);
+    }
 }
 
 module.exports = {

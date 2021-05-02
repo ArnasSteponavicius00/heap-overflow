@@ -11,8 +11,8 @@ const UserSchema = new Schema({
     email: String,
     password: String,
     createdAt: {
-    default: Date.now(),
-    type: Date
+        default: Date.now(),
+        type: Date
     },
     role: String,
 });

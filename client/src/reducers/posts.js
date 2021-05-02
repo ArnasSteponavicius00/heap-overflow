@@ -8,7 +8,8 @@ const posts = (posts = [], action) => {
             // return the all posts
             return action.payload;
         case 'CREATE':
-            return posts;
+            // spread the posts and save
+            return [...posts, action.payload];
         default:
             return posts;
     }

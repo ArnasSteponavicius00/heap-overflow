@@ -1,0 +1,16 @@
+// reducers are functions that accepts state and action.
+// based on that action we can change the state based on it.
+// in this case, the states are the posts.
+
+const posts = (posts = [], action) => {
+    switch (action.type) {
+        case 'FETCH_ALL':
+            return posts;
+        case 'CREATE':
+            return posts;
+        default:
+            return posts;
+    }
+}
+
+export default posts;

@@ -13,4 +13,12 @@ export default makeStyles(() => ({
       image: {
         marginLeft: '15px',
       },
+      forum: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        borderRadius: '15px',
+        height: '100%',
+        position: 'relative',
+      },
 }));

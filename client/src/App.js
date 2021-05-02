@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Container, AppBar, Grow, Grid } from '@material-ui/core';
+import { Container, AppBar, Grow, Grid, Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 
@@ -24,11 +24,10 @@ function App() {
             </AppBar>
             <Grow in>
                 <Container>
+                    <Form />
+                    <Typography className={classes.forum} variant="h3" align="center">Forum Posts</Typography>
                     <Grid container justify="space-between" alignItems="stretch" spacing={4}>
-                        <Grid item xs={12} sm={4}>
-                            <Form />  
-                        </Grid>
-                        <Grid item xs={12} sm={7}>
+                        <Grid item xs={6} sm={6}>
                             <Posts />
                         </Grid>
                     </Grid>

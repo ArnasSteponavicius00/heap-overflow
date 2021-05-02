@@ -1,14 +1,29 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import moment from 'moment';
 
-const Post = () => {
-    // init hook, gain access to the store from redux
-    const posts = useSelector((state) => state.posts);
-    console.log(posts);
+import useStyles from './styles';
+
+const Post = (post) => {
+    const classes = useStyles();
+
+    console.log(post.post.title);
 
     return (
-        <h1>Post</h1>
+        <Card className={classes.card}>
+          <Typography className={classes.media} variant="h2"></Typography>
+          <div className={classes.overlay}>
+            <Typography variant="h6">{post.post.title}</Typography>
+            <Typography variant="body2">{post.post.message}</Typography>
+          </div>
+          <Typography className={classes.details} variant="h6" color="textSecondary" component="p">{post.post.user}</Typography> 
+          <Typography className={classes.details} variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+          <CardActions className={classes.cardActions}>
+            <Button size="small" color="primary" >Like {post.post.likeCount} </Button>
+            <Button size="small" color="primary" >Dislike</Button>
+          </CardActions>
+        </Card>
     );
-}
+};
 
 export default Post;

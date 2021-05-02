@@ -7,11 +7,11 @@ const postRoutes = require('./routes/posts.js')
 
 const app = express();
 
-app.use('/posts', postRoutes);
-
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+app.use('/posts', postRoutes);
 
 // connect to mongo database
 const DATABASE_URL = "mongodb+srv://arnas:arnasadmin@overflow.bsmn6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"

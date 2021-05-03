@@ -87,11 +87,27 @@ const likePost = async (req, res) => {
     res.json(updatedPost);
 }
 
+const dislikePost = async (req, res) => {
+    const { id: _id } = req.params;
+
+    // check whether the post has a valid id in the mongo database, if not
+    // return a 404
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send("No post with such id");
+    }
+
+    const post = await Post.findById(_id);
+    const updatedPost = await Post.findByIdAndUpdate(_id, { dislikeCounter: post.dislikeCounter + 1 }, { new: true });
+
+    res.json(updatedPost);
+}
+
 // export the functions
 module.exports = {
     getPosts,
     createPosts,
     updatePost,
     deletePost,
-    likePost
+    likePost,
+    dislikePost
 };

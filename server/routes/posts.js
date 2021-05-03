@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { getPosts, createPosts, updatePost, deletePost, likePost } = require('../controllers/posts')
+const { getPosts, createPosts, updatePost, deletePost, likePost, dislikePost } = require('../controllers/posts')
 
 router.get('/', getPosts);
 router.post('/', createPosts);
@@ -9,5 +9,6 @@ router.post('/', createPosts);
 router.patch('/:id', updatePost);
 router.delete('/:id', deletePost);
 router.patch('/:id/likePost', likePost);
+router.patch('/:id/dislikePost', dislikePost);
 
 module.exports = router;

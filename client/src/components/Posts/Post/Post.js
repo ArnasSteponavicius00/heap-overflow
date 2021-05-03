@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardActions, Button, Typography } from '@material-ui/core';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { deletePost, likePost } from '../../../actions/posts';
+import { deletePost, likePost, dislikePost } from '../../../actions/posts';
 
 import useStyles from './styles';
 
@@ -24,7 +24,7 @@ const Post = ( { post, setCurrentId } ) => {
               <Typography className={classes.details} variant="body2">Posted by {post.user} {moment(post.createdAt).fromNow()}</Typography>
             </div>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))} >Like {post.likeCounter} </Button>
-            <Button size="small" className={classes.qButton} color="secondary" >Dislike {post.dislikeCounter}</Button>
+            <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(dislikePost(post._id))}>Dislike {post.dislikeCounter}</Button>
             <Button size="small" className={classes.qButton} onClick={() => setCurrentId(post._id)}>Edit</Button>
             <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
          </CardActions>

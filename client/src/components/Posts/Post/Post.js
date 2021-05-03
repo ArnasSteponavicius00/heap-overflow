@@ -23,8 +23,8 @@ const Post = ( { post, setCurrentId } ) => {
             <div className={classes.postDiv}>
               <Typography className={classes.details} variant="body2">Posted by {post.user} {moment(post.createdAt).fromNow()}</Typography>
             </div>
-            <Button size="small" className={classes.qButton} color="primary" >Like {post.likeCounter} </Button>
-            <Button size="small" className={classes.qButton} color="primary" >Dislike {post.dislikeCounter}</Button>
+            <Button size="small" className={classes.qButton} color="secondary" >Like {post.likeCounter} </Button>
+            <Button size="small" className={classes.qButton} color="secondary" >Dislike {post.dislikeCounter}</Button>
             <Button size="small" className={classes.qButton} onClick={() => setCurrentId(post._id)}>Edit</Button>
             <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
          </CardActions>

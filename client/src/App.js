@@ -7,6 +7,7 @@ import { getPosts } from './actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import NavBar from './components/NavBar/NavBar';
+import Auth from './components/Authentication/Auth';
 
 function App() {
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function App() {
     return (
         <BrowserRouter>
             <NavBar />
-            <Container maxidth="lg">
+            <Container maxWidth="lg">
                 <Grow in>
                     <Container>
                         <Switch>
@@ -30,6 +31,7 @@ function App() {
                             </Grid>
                         </Grid>
                         </Switch>
+                        <Auth />
                     </Container>
                 </Grow>
             </Container>

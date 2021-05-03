@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Container, AppBar, Grow, Grid, Typography } from '@material-ui/core';
+import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
+import { Container, AppBar, Grow, Grid, Typography, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 
@@ -18,23 +19,26 @@ function App() {
     }, [dispatch]);
 
     return (
-        <Container maxidth="lg">
-            <AppBar className={classes.appBar} position="static" color="inherit" align="left">
-                {/* <img className={classes.image} src={logo} alt="logo" height="100" /> */}
-                <Typography className={classes.header} variant="h5" align="center">HEAP-OVERFLOW</Typography>
-            </AppBar>
-            <Grow in>
-                <Container>
-                    <Form currentId={currentId} setCurrentId={setCurrentId}/>
-                    <Typography className={classes.forum} variant="h3" align="center">Forum Posts</Typography>
-                    <Grid container direction="row" justify="space-between" alignItems="center" spacing={4}>
-                        <Grid item xs={12} sm={12}>
-                            <Posts setCurrentId={setCurrentId} />
+        <BrowserRouter>
+            <Container maxidth="lg">
+                <AppBar className={classes.appBar} position="static" color="inherit" align="left">
+                    <Typography className={classes.header} variant="h5">HEAP-OVERFLOW</Typography>
+                    <Link to='/question'><Button className={classes.qButton}>POST</Button></Link>
+                </AppBar>
+                <Grow in>
+                    <Container>
+                        <Switch>
+                            <Route path="/question"><Form currentId={currentId} setCurrentId={setCurrentId}/></Route>
+                            <Grid container direction="row" justify="space-between" alignItems="center" spacing={4}>
+                            <Grid item xs={12} sm={12}>
+                                <Route path="/"><Posts setCurrentId={setCurrentId} /></Route> 
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Container>
-            </Grow>
-        </Container>
+                        </Switch>
+                    </Container>
+                </Grow>
+            </Container>
+        </BrowserRouter>
     );
 }
 

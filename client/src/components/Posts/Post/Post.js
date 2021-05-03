@@ -12,7 +12,6 @@ const Post = ( { post, setCurrentId } ) => {
 
     return (
         <Card className={classes.card}>
-          <Typography className={classes.media} variant="h6"></Typography>
           <div className={classes.overlay}>
             <Typography variant="h6">{post.title}</Typography>
             <Typography variant="body2">{post.message}</Typography>

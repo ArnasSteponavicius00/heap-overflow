@@ -3,12 +3,14 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createPost, updatePost } from '../../actions/posts';
+import useStyles from './styles';
 
 const Form = ({ currentId, setCurrentId}) => {
 
     const [postData, setPostData] = useState({title: '', message: '', user: '', file: ''});
     const post = useSelector((state) => (currentId ? state.posts.find((title) => title._id === currentId) : null));
     const dispatch = useDispatch();
+    const classes = useStyles();
 
     useEffect(() => {
         if(post) setPostData(post);
@@ -36,8 +38,8 @@ const Form = ({ currentId, setCurrentId}) => {
     }
 
     return (
-        <Paper>
-            <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        <Paper className={classes.paper}>
+            <form autoComplete="off" className={`${classes.root} ${classes.form}`} noValidate onSubmit={handleSubmit}>
                 <Typography variant="h6" align="center">{currentId ? 'Edit a Question' : 'Ask a Question!'}</Typography>
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} 
                            onChange={(e) => setPostData({...postData, title: e.target.value})}

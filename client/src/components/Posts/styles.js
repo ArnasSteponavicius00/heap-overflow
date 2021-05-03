@@ -22,4 +22,11 @@ export default makeStyles((theme) => ({
     color: '#FFFFFF',
     fontWeight: 600
   },
+  containerProg: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+  },
 }));

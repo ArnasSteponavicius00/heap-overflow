@@ -72,10 +72,26 @@ const deletePost = async (req, res) => {
     res.json({ message: 'Post has been deleted' });
 }
 
+const likePost = async (req, res) => {
+    const { id: _id } = req.params;
+
+    // check whether the post has a valid id in the mongo database, if not
+    // return a 404
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send("No post with such id");
+    }
+
+    const post = await Post.findById(_id);
+    const updatedPost = await Post.findByIdAndUpdate(_id, { likeCounter: post.likeCounter + 1 }, { new: true });
+
+    res.json(updatedPost);
+}
+
 // export the functions
 module.exports = {
     getPosts,
     createPosts,
     updatePost,
-    deletePost
+    deletePost,
+    likePost
 };

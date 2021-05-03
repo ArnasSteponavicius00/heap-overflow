@@ -14,6 +14,9 @@ const posts = (posts = [], action) => {
             // if post id is the same as the payload id, then return the payload which is the recently,
             // updated post
             return posts.map((post) => post._id === action.payload._id ? action.payload : post);
+        case 'DELETE':
+            // return the posts and filter based on id
+            return posts.filter((post) => post._id !== action.payload);
         default:
             return posts;
     }

@@ -55,9 +55,27 @@ const updatePost = async (req, res) => {
     res.json(updatedPost);
 }
 
+// Delete Posts
+const deletePost = async (req, res) => {
+    const { id: _id } = req.params;
+
+    // check whether the post has a valid id in the mongo database, if not
+    // return a 404
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send("No post with such id");
+    }
+
+    // delete the post
+    Post.findByIdAndDelete(_id);
+
+    // send the updated post as a response
+    res.json({ message: 'Post has been deleted' });
+}
+
 // export the functions
 module.exports = {
     getPosts,
     createPosts,
-    updatePost
+    updatePost,
+    deletePost
 };

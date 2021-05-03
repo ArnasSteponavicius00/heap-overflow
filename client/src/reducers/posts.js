@@ -10,6 +10,10 @@ const posts = (posts = [], action) => {
         case 'CREATE':
             // spread the posts and save
             return [...posts, action.payload];
+        case 'UPDATE':
+            // if post id is the same as the payload id, then return the payload which is the recently,
+            // updated post
+            return posts.map((post) => post._id === action.payload._id ? action.payload : post);
         default:
             return posts;
     }

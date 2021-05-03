@@ -4,7 +4,7 @@ export default makeStyles({
   media: {
     height: 0,
     paddingTop: '56.25%',
-    backgroundColor: '#c9c9c9',
+    backgroundColor: '#00b7ff',
     backgroundBlendMode: 'darken',
   },
   card: {
@@ -20,6 +20,13 @@ export default makeStyles({
     top: '20px',
     left: '20px',
     color: 'black',
+  },
+  sidedots: {
+    position: 'absolute',
+    top: '20px',
+    right: '20px',
+    color: 'white',
+    fontWeight: 600
   },
   details: {
     display: 'flex',

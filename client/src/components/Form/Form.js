@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { createPost } from '../../actions/posts';
+import { createPost, updatePost } from '../../actions/posts';
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId}) => {
 
     const [postData, setPostData] = useState({title: '', message: '', user: '', file: ''});
+    const post = useSelector((state) => (currentId ? state.posts.find((title) => title._id === currentId) : null));
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(post) setPostData(post);
+    }, [post])
 
     // create a submission event to send post data to the action creator
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // pass in the state data
-        dispatch(createPost(postData));
-        console.log("Submitted data");
+        if(currentId){
+            dispatch(updatePost(currentId, postData));
+            console.log("Updated Post");
+        } else {
+            // pass in the state data
+            dispatch(createPost(postData));
+            console.log("Submitted data");
+        }
     }
 
     return (
@@ -31,7 +41,7 @@ const Form = () => {
                 <TextField name="user" variant="outlined" label="User" fullWidth value={postData.user} 
                            onChange={(e) => setPostData({...postData, user: e.target.value})}
                 />
-                <Button variant="contained" color="primary" size="large" type="submit" fullWidth>
+                <Button variant="contained" color="primary" size="large" type="submit">
                     Ask Away!
                 </Button>
             </form>

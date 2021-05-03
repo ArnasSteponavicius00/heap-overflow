@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, AppBar, Grow, Grid, Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
@@ -10,6 +10,7 @@ import useStyles from './styles';
 function App() {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const [ currentId, setCurrentId ] = useState(null);
 
     // use a hook to get the action creator to request post data
     useEffect(() => {
@@ -24,11 +25,11 @@ function App() {
             </AppBar>
             <Grow in>
                 <Container>
-                    <Form />
+                    <Form currentId={currentId} setCurrentId={setCurrentId}/>
                     <Typography className={classes.forum} variant="h3" align="center">Forum Posts</Typography>
                     <Grid container justify="space-between" alignItems="stretch" spacing={4}>
                         <Grid item xs={6} sm={6}>
-                            <Posts />
+                            <Posts setCurrentId={setCurrentId} />
                         </Grid>
                     </Grid>
                 </Container>

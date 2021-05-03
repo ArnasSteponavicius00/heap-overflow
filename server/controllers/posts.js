@@ -1,5 +1,6 @@
 const express = require('express');
-const Post = require('../models/post');
+const mongoose = require('mongoose');
+const Post = require('../models/post.js');
 
 // Error Codes for HTTP
 // https://www.restapitutorial.com/httpstatuscodes.html
@@ -33,7 +34,7 @@ const createPosts = async (req, res) => {
     }
 }
 
-const updatePosts = async (req, res) => {
+const updatePost = async (req, res) => {
     // get the id from the parameters and rename to _id
     const { id: _id } = req.params;
 
@@ -47,16 +48,15 @@ const updatePosts = async (req, res) => {
     }
 
     // update the post and gain access to it from the database
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });
+    const updatedPost = await Post.findByIdAndUpdate(_id, post, { new: true });
     
     // send the updated post as a response
     res.json(updatedPost);
-
 }
 
 // export the functions
 module.exports = {
     getPosts,
     createPosts,
-    updatePosts
+    updatePost
 };

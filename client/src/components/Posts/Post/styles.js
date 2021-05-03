@@ -1,46 +1,45 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
-  media: {
-    height: 0,
-    paddingTop: '7.5%',
-    backgroundColor: '#00b7ff',
-    backgroundBlendMode: 'darken',
-  },
   card: {
+    borderRadius: 15,
+    margin: '10px 0px 5px 5px',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '15px',
-    height: '100%',
-    position: 'relative',
+    justifyContent: 'left',
+    alignItems: 'left',
+    backgroundColor: '#7da2a9'
   },
-  overlay: {
-    position: 'absolute',
-    top: '10px',
-    left: '20px',
-    color: 'black',
-  },
-  overlay2: {
-    position: 'absolute',
-    top: '70px',
-    left: '20px',
-    color: 'black',
-  },
-  edit: {
-    position: 'absolute',
-    top: '20px',
-    right: '20px',
-    color: 'white',
+  header: {
+    flexDirection: 'row',
+    margin: '5px 20px',
+    display: 'flex',
+    color: '#051622',
     fontWeight: 600
   },
+  messageBody: {
+    margin: '-5px 20px',
+    right: '20px',
+    display: 'flex',
+    color: '#051622',
+    fontWeight: 600,
+  },
   details: {
-    height: 0,
-    paddingTop: '5.5%',
+    margin: '0px 10px',
+    right: '20px',
   },
   cardActions: {
-    padding: '30px 10px 5px 10px',
+    padding: '2px 5px 5px 10px',
     display: 'flex',
     justifyContent: 'row',
+  },
+  qButton: {
+    margin: '8px 0px 2px 0px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '10px',
+    borderRadius: 15,
+    fontWeight: 600,
+    bottom: '0px'
   },
 });

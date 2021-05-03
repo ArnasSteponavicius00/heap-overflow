@@ -12,19 +12,22 @@ const Post = ( { post, setCurrentId } ) => {
 
     return (
         <Card className={classes.card}>
-          <div className={classes.overlay}>
+          <div className={classes.header}>
             <Typography variant="h6">{post.title}</Typography>
+          </div>
+          <div className={classes.messageBody}>
             <Typography variant="body2">{post.message}</Typography>
           </div>
-          <div className={classes.overlay2}>
-            <Typography variant="body2">{post.user} {moment(post.createdAt).fromNow()}</Typography>
-          </div>
+          
           <CardActions className={classes.cardActions}>
-            <Button size="small" color="primary" >Like {post.likeCounter} </Button>
-            <Button size="small" color="primary" >Dislike {post.dislikeCounter}</Button>
-            <Button size="small" style={{color: 'black'}} onClick={() => setCurrentId(post._id)}>Edit</Button>
-            <Button size="small" style={{color: 'black'}} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
-          </CardActions>
+            <div className={classes.postDiv}>
+              <Typography className={classes.details} variant="body2">Posted by {post.user} {moment(post.createdAt).fromNow()}</Typography>
+            </div>
+            <Button size="small" className={classes.qButton} color="primary" >Like {post.likeCounter} </Button>
+            <Button size="small" className={classes.qButton} color="primary" >Dislike {post.dislikeCounter}</Button>
+            <Button size="small" className={classes.qButton} onClick={() => setCurrentId(post._id)}>Edit</Button>
+            <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
+         </CardActions>
         </Card>
     );
 };

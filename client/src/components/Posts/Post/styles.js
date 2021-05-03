@@ -8,7 +8,7 @@ export default makeStyles({
     flexDirection: 'column',
     justifyContent: 'left',
     alignItems: 'left',
-    backgroundColor: '#7da2a9'
+    backgroundColor: '#FFFFFF'
   },
   header: {
     flexDirection: 'row',

@@ -18,8 +18,8 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#7da2a9',
-    color: '#051622',
+    backgroundColor: '#900404',
+    color: '#FFFFFF',
     fontWeight: 600
   },
 }));

@@ -8,7 +8,7 @@ export default makeStyles(() => ({
         flexDirection: 'row',
         justifyContent: 'left',
         alignItems: 'left',
-        backgroundColor: '#000000'
+        backgroundColor: '#fffdfd'
       },
       image: {
         marginLeft: '15px',
@@ -20,5 +20,11 @@ export default makeStyles(() => ({
         borderRadius: '15px',
         height: '100%',
         position: 'relative',
+      },
+      header: {
+        margin: '10px 20px',
+        display: 'flex',
+        color: '#2b3b87',
+        fontWeight: 600
       },
 }));

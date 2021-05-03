@@ -33,7 +33,30 @@ const createPosts = async (req, res) => {
     }
 }
 
+const updatePosts = async (req, res) => {
+    // get the id from the parameters and rename to _id
+    const { id: _id } = req.params;
+
+    // get the post data from the body of the page
+    const post = req.body;
+
+    // check whether the post has a valid id in the mongo database, if not
+    // return a 404
+    if(mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send("No post with such id");
+    }
+
+    // update the post and gain access to it from the database
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });
+    
+    // send the updated post as a response
+    res.json(updatedPost);
+
+}
+
+// export the functions
 module.exports = {
     getPosts,
-    createPosts
+    createPosts,
+    updatePosts
 };

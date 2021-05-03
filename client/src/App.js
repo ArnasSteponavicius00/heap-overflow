@@ -5,7 +5,6 @@ import { getPosts } from './actions/posts';
 
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
-import logo from './images/logo.svg';
 import useStyles from './styles';
 
 function App() {
@@ -20,7 +19,8 @@ function App() {
     return (
         <Container maxidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit" align="left">
-                <img className={classes.image} src={logo} alt="logo" height="100" />
+                {/* <img className={classes.image} src={logo} alt="logo" height="100" /> */}
+                <Typography className={classes.header} variant="h5" align="center">HEAP-OVERFLOW</Typography>
             </AppBar>
             <Grow in>
                 <Container>

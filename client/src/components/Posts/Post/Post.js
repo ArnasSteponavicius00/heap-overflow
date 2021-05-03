@@ -1,13 +1,11 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import { Card, CardActions, Button, Typography } from '@material-ui/core';
 import moment from 'moment';
 
 import useStyles from './styles';
 
 const Post = (post) => {
     const classes = useStyles();
-
-    console.log(post.post.title);
 
     return (
         <Card className={classes.card}>

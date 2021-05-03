@@ -43,7 +43,7 @@ const updatePost = async (req, res) => {
 
     // check whether the post has a valid id in the mongo database, if not
     // return a 404
-    if(mongoose.Types.ObjectId.isValid(_id)) {
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
         return res.status(404).send("No post with such id");
     }
 

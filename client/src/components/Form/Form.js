@@ -42,7 +42,7 @@ const Form = ({ currentId, setCurrentId}) => {
                            onChange={(e) => setPostData({...postData, user: e.target.value})}
                 />
                 <Button variant="contained" color="primary" size="large" type="submit">
-                    Ask Away!
+                    Submit
                 </Button>
             </form>
         </Paper>

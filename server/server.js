@@ -17,6 +17,9 @@ app.use('/posts', postRoutes);
 const DATABASE_URL = "mongodb+srv://arnas:arnasadmin@overflow.bsmn6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 const PORT = process.env.PORT || 5000;
 
+// remove deprecation warning
+mongoose.set('useFindAndModify', false);
+
 mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, () => console.log(`Server is running on port ${PORT}`)))
     .catch((error) => console.log(error.message));

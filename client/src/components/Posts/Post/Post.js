@@ -9,19 +9,18 @@ const Post = ( { post, setCurrentId } ) => {
 
     return (
         <Card className={classes.card}>
-          <Typography className={classes.media} variant="h2"></Typography>
+          <Typography className={classes.media} variant="h6"></Typography>
           <div className={classes.overlay}>
             <Typography variant="h6">{post.title}</Typography>
             <Typography variant="body2">{post.message}</Typography>
           </div>
-          <div className={classes.sidedots}>
-            <Button size="small" style={{color: 'white'}} onClick={() => setCurrentId(post._id)}>...</Button>
+          <div className={classes.overlay2}>
+            <Typography variant="body2">{post.user} {moment(post.createdAt).fromNow()}</Typography>
           </div>
-          <Typography className={classes.details} variant="h6" color="textSecondary" component="p">{post.user}</Typography> 
-          <Typography className={classes.details} variant="body2">{moment(post.createdAt).fromNow()}</Typography>
           <CardActions className={classes.cardActions}>
-            <Button size="small" color="primary" >Like {post.likeCount} </Button>
-            <Button size="small" color="primary" >Dislike</Button>
+            <Button size="small" color="primary" >Like {post.likeCounter} </Button>
+            <Button size="small" color="primary" >Dislike {post.dislikeCounter}</Button>
+            <Button size="small" style={{color: 'black'}} onClick={() => setCurrentId(post._id)}>Edit</Button>
           </CardActions>
         </Card>
     );

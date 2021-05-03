@@ -10,7 +10,11 @@ const PostSchema = new Schema({
     message: String,
     user: String,
     file: String,
-    counter: {
+    likeCounter: {
+        type: Number,
+        default: 0
+    },
+    dislikeCounter: {
         type: Number,
         default: 0
     },

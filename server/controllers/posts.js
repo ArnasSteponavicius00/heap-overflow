@@ -16,10 +16,11 @@ const getPosts = async (req, res) => {
         
         res.status(200).json(postMessages);
     } catch (error) {
-        res.status(404).json(error.message);
+        res.status(404).json(error);
     }
 }
 
+// Create a new post
 const createPosts = async (req, res) => {
     const post = req.body;
 
@@ -27,13 +28,13 @@ const createPosts = async (req, res) => {
 
     try {
         await newPost.save();
-
         res.status(201).json(newPost);
     } catch (error) {
-        res.status(409).json(error.message);
+        res.status(409).json(error);
     }
 }
 
+// Update Posts
 const updatePost = async (req, res) => {
     // get the id from the parameters and rename to _id
     const { id: _id } = req.params;

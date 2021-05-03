@@ -27,8 +27,8 @@ function App() {
                 <Container>
                     <Form currentId={currentId} setCurrentId={setCurrentId}/>
                     <Typography className={classes.forum} variant="h3" align="center">Forum Posts</Typography>
-                    <Grid container justify="space-between" alignItems="stretch" spacing={4}>
-                        <Grid item xs={6} sm={6}>
+                    <Grid container direction="row" justify="space-between" alignItems="center" spacing={4}>
+                        <Grid item xs={12} sm={12}>
                             <Posts setCurrentId={setCurrentId} />
                         </Grid>
                     </Grid>

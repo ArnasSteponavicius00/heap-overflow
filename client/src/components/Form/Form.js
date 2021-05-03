@@ -19,19 +19,26 @@ const Form = ({ currentId, setCurrentId}) => {
         e.preventDefault();
 
         if(currentId){
-            dispatch(updatePost(currentId, postData));
+            dispatch(updatePost(currentId, postData)); 
             console.log("Updated Post");
         } else {
             // pass in the state data
             dispatch(createPost(postData));
             console.log("Submitted data");
         }
+        
+        clear();
+    }
+
+    const clear = () => {
+        setCurrentId(null);
+        setPostData({title: '', message: '', user: '', file: ''});
     }
 
     return (
         <Paper>
             <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                <Typography variant="h6" align="center">Ask a Question!</Typography>
+                <Typography variant="h6" align="center">{currentId ? 'Edit a Question' : 'Ask a Question!'}</Typography>
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} 
                            onChange={(e) => setPostData({...postData, title: e.target.value})}
                 />

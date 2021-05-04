@@ -24,13 +24,17 @@ const Auth = () => {
                 <Typography variant="h5">{signedUp ? 'Sign Up' : 'Sign In'}</Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
-                        <Grid xs={12} md={6}>
-                            <TextField name="fName" label="First Name" onChange={handleChange} required autoFocus xs={6} fullWidth/>
-                        </Grid>
+                        { signedUp && (
+                            <React.Fragment>
+                                <Grid xs={12} md={6}>
+                                <TextField name="fName" label="First Name" onChange={handleChange} required autoFocus xs={6} fullWidth/>
+                                </Grid>
 
-                        <Grid xs={12} md={6}>
-                            <TextField name="lName" label="Last Name" onChange={handleChange} required autoFocus xs={6} fullWidth/>
-                        </Grid>
+                                <Grid xs={12} md={6}>
+                                    <TextField name="lName" label="Last Name" onChange={handleChange} required autoFocus xs={6} fullWidth/>
+                                </Grid>
+                            </React.Fragment>
+                        )}
 
                         <Grid xs={12} md={12}>
                             <TextField name="email" label="Email Address" onChange={handleChange} type="email" required autoFocus fullWidth/>

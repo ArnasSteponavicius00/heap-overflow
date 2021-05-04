@@ -10,7 +10,7 @@ const Home = ( {setCurrentId } ) => {
             <Grow in>
                 <Container>
                     <Switch>
-                        <Grid container direction="row" justify="space-between" alignItems="center" spacing={4}>       
+                        <Grid container spacing={2}>       
                             <Grid item xs={12} sm={12}>
                                 <Route path="/"><Posts setCurrentId={setCurrentId} /></Route> 
                             </Grid>

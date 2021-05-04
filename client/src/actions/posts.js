@@ -1,4 +1,5 @@
 // https://read.reduxbook.com/markdown/part1/04-action-creators.html
+// https://github.com/reduxjs/redux-thunk
 import * as api from '../api';
 
 export const getPosts = () =>  async (dispatch) => {

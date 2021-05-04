@@ -4,7 +4,7 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createPost, updatePost } from '../../actions/posts';
-import useStyles from './styles';
+import useStyles from './styles'; // https://material-ui.com/styles/api/#makestyles-styles-options-hook
 
 const Form = ({ currentId, setCurrentId}) => {
 

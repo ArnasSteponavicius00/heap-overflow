@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Grid, CircularProgress, Typography } from '@material-ui/core';
 import Post from './Post/Post';
 
-import useStyles from './styles';
+import useStyles from './styles'; // https://material-ui.com/styles/api/#makestyles-styles-options-hook
 
 const Posts = ({ setCurrentId }) => {
     // init hook, gain access to the store from redux

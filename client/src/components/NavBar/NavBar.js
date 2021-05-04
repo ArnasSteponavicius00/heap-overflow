@@ -3,7 +3,7 @@ import { Route, BrowserRouter, Link} from 'react-router-dom';
 import { AppBar, Typography, Button, Toolbar, Container } from '@material-ui/core';
 
 import Form from '../Form/Form';
-import useStyles from './styles';
+import useStyles from './styles'; // https://material-ui.com/styles/api/#makestyles-styles-options-hook
 
 const NavBar = ( { currentId, setCurrentId } ) => {
     const classes = useStyles();

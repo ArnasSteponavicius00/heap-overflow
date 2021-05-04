@@ -15,8 +15,28 @@ const signin = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        console.log(email, password);
-        res.json({email, password });
+        // use mongoose to look for a user with the email from the request we got above
+        const findUser = await User.findOne({ email });
+
+        // check whether the user is the database, if not return a 404
+        if(!findUser) {
+            return res.send("Can't find user with entered email.");
+        }
+
+        // use bcrypt to compare the entered password with the password returned from the database
+        const checkPassword = await bcrypt.compare(password, findUser.password);
+
+        // if the password does not match return an error
+        if(!checkPassword) {
+            return res.send("Password does not match.");
+        }
+
+        // assign a web token to the payload, in this case the email and the id, salt the token with the environmental variable
+        // and have it expire after an hour
+        const token = jwt.sign( {email: findUser.email, id: findUser._id}, process.env.SECRET_KEY, { expiresIn: "1h"});
+
+        // send back the user
+        res.json({user: findUser, token});
     } catch (error) {
         res.json(error);
     }

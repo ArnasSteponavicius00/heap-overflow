@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Switch, Route, BrowserRouter, Link} from 'react-router-dom';
-import { Container, Grow, Grid, Button} from '@material-ui/core';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Container, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 
 import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
 import NavBar from './components/NavBar/NavBar';
 import Auth from './components/Authentication/Auth';
-import useStyles from './styles';
 
 function App() {
-    const classes = useStyles();
     const dispatch = useDispatch();
     const [ currentId, setCurrentId ] = useState(null);
 

@@ -2,17 +2,21 @@
 // https://github.com/reduxjs/redux-thunk
 import * as api from '../api';
 
-export const signin = (data, history) => async (dispatch) => {
+export const signin = (formData, history) => async (dispatch) => {
     try {
-        // login logic code here
+        const { data } = await api.signIn(formData);
+        dispatch({type:'AUTH', data});
+        history.push('/');
     } catch (error) {
         console.log(error);
     }  
 };
 
-export const signup = (data, history) => async (dispatch) => {
+export const signup = (formData, history) => async (dispatch) => {
     try {
-        // sign up logic code here
+        const { data } = await api.signUp(formData);
+        dispatch({type:'AUTH', data});
+        history.push('/');
     } catch (error) {
         console.log(error);
     }

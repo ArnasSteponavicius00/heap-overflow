@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
       marginTop: theme.spacing(3),
     },
     qButton: {
-      margin: '20px 0px 0px 125px',
+      margin: '20px 0px 0px 10px',
       justifyContent: 'center',
       alignItems: 'center',
       fontSize: '15px',

@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Paper, Grid, Typography, Container, TextField } from '@material-ui/core';
 
 import useStyles from './styles';
 
+const initialState = { fName: '', lName: '', email: '', password: '', confirmPassword: ''};
+
 const Auth = () => {
-    const state = null;
+    const [data, setData] = useState(initialState);
     const classes = useStyles();
-    const signedUp = false;
+    const [signedUp, setSignedUp] = useState(false);
 
     // placeholder function for now
-    const handleChange = () => {
-
+    const handleChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value})
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => { 
+        e.preventDefault();
+        console.log(data);
+    };
 
+
+    // ref: https://www.valentinog.com/blog/react-object-is/
+    // handling states to go between two states to change form display based on it
+    const switchSignIn = () => {
+        setData(initialState);
+        setSignedUp((prevSignedUp) => !prevSignedUp);
     };
 
     return (
@@ -48,11 +59,15 @@ const Auth = () => {
                                 <TextField name="confirmPassword" label="Confirm Password" onChange={handleChange} type="password" required autoFocus fullWidth/>
                             </Grid>
                         }
-                        
                     </Grid>
-                    <Button className={classes.qButton} type="submit" variant="contained" alignItems="center" color="secondary">
+                    <Button className={classes.qButton} type="submit" variant="contained" color="secondary">
                             { signedUp ? 'Sign Up' : 'Sign In'}
                     </Button>
+                    <Grid>
+                        <Button onClick={switchSignIn} variant="body2">
+                                { signedUp ? 'Have an account? Sign in!' : 'Need to make an account? Sign up!'}
+                        </Button>
+                    </Grid>
                 </form>
             </Paper>
         </Container>

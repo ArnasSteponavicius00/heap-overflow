@@ -1,6 +1,7 @@
 // reducers are functions that accepts state and action.
 // based on that action we can change the state based on it.
 // in this case, the states are the posts.
+// https://blog.jscrambler.com/async-dispatch-chaining-with-redux-thunk/
 
 const posts = (posts = [], action) => {
     switch (action.type) {

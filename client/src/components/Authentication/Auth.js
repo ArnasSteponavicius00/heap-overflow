@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'; // https://www.pluralsight.com/guides/using-react-with-the-history-api
 import { Button, Paper, Grid, Typography, Container, TextField } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
 // https://material-ui.com/styles/api/#makestyles-styles-options-hook
 import useStyles from './styles';
@@ -13,9 +14,9 @@ const Auth = () => {
     const [signedUp, setSignedUp] = useState(false);
     const classes = useStyles();
     const history = useHistory();
+    const dispatch = useDispatch();
 
     //https://reactgo.com/react-router-usehistory-hook/
-
     // spread the data of the form, get the target name and set the value
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value})

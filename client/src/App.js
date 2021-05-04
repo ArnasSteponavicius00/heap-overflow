@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { Container, Grow, Grid } from '@material-ui/core';
+import { Container} from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 

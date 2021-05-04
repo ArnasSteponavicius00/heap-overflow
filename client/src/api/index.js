@@ -1,3 +1,4 @@
+// https://blog.jscrambler.com/async-dispatch-chaining-with-redux-thunk/
 import axios from 'axios';
 
 const url = "http://localhost:5000/posts";

@@ -1,11 +1,13 @@
 // https://blog.jscrambler.com/async-dispatch-chaining-with-redux-thunk/
+// https://masteringjs.io/tutorials/axios/create 
 import axios from 'axios';
 
-const url = "http://localhost:5000/posts";
+// create an instance of axios so that you can set up routes for multiple actions
+const instance = axios.create({ baseURL: "http://localhost:5000" });
 
-export const fetchPosts = () => axios.get(url);
-export const createPost = (newPost) => axios.post(url, newPost);
-export const updatePost = (id, postData) => axios.patch(`${url}/${id}`, postData);
-export const deletePost = (id) => axios.delete(`${url}/${id}`);
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
-export const dislikePost = (id) => axios.patch(`${url}/${id}/dislikePost`);
+export const fetchPosts = () => instance.get('/posts');
+export const createPost = (newPost) => instance.post('/posts', newPost);
+export const updatePost = (id, postData) => instance.patch(`${'/posts'}/${id}`, postData);
+export const deletePost = (id) => instance.delete(`${'/posts'}/${id}`);
+export const likePost = (id) => instance.patch(`${'/posts'}/${id}/likePost`);
+export const dislikePost = (id) => instance.patch(`${'/posts'}/${id}/dislikePost`);

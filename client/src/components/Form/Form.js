@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +13,7 @@ const Form = ({ currentId, setCurrentId}) => {
     const post = useSelector((state) => (currentId ? state.posts.find((title) => title._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
+    const history = useHistory();
 
     useEffect(() => {
         if(post) setPostData(post);
@@ -22,11 +24,11 @@ const Form = ({ currentId, setCurrentId}) => {
         e.preventDefault();
 
         if(currentId){
-            dispatch(updatePost(currentId, postData)); 
+            dispatch(updatePost(currentId, postData, history)); 
             console.log("Updated Post");
         } else {
             // pass in the state data
-            dispatch(createPost(postData));
+            dispatch(createPost(postData, history));
             console.log("Submitted data");
         }
         

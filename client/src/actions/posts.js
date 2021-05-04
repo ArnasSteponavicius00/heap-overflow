@@ -15,22 +15,26 @@ export const getPosts = () =>  async (dispatch) => {
     }
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, history) => async (dispatch) => {
     try {
         const { data } = await api.createPost(post);
         const action = { type: 'CREATE', payload: data};
         dispatch(action);
+        // redirect to home after submission
+        history.push('/');
     } catch (error) {
         console.log(error);
     }
 }
 
-export const updatePost = (id, post) => async (dispatch) => {
+export const updatePost = (id, post, history) => async (dispatch) => {
     try {
         // destructure the response to get the data
         const { data } = await api.updatePost(id, post);
         const action = { type: 'UPDATE', payload: data};
         dispatch(action);
+        // redirect to home after submission
+        history.push('/');
     } catch (error) {
         console.log(error);
     }
@@ -48,7 +52,7 @@ export const deletePost = (id) => async (dispatch) => {
 
 export const likePost = (id) => async (dispatch) => {
     try {
-        const { data } = await api.likePost(id);
+        await api.likePost(id);
         const action = { type: 'LIKE_POST', payload: id};
         dispatch(action);
         window.location.reload();

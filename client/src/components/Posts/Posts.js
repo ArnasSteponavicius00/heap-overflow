@@ -12,13 +12,13 @@ const Posts = ({ setCurrentId }) => {
 
     if(!posts.length) {
         return (
-            <Grid className={classes.containerProg} container alignItems="stretch">
+            <Grid className={classes.containerProg} container>
                 <CircularProgress className={classes.progress} />
             </Grid>
         );
     } else {
         return (
-            <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
+            <Grid className={classes.mainContainer} container spacing={3}>
                 <Typography className={classes.forum} variant="h5" align="center">Forum Posts</Typography>
                 {posts.map((post) => (
                     <Grid key={post._id} item xs={12} md={12}>

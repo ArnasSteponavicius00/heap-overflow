@@ -36,9 +36,9 @@ const signin = async (req, res) => {
         const token = jwt.sign( {email: findUser.email, id: findUser._id}, process.env.SECRET_KEY, { expiresIn: "1h"});
 
         // send back the user
-        res.json({result: findUser, token});
+        res.status(200).json({result: findUser, token});
     } catch (error) {
-        res.json(error);
+        res.status(500).json(error);
     }
 };
 
@@ -70,9 +70,9 @@ const signup = async (req, res) => {
         const token = jwt.sign( {email: result.email, id: result._id}, process.env.SECRET_KEY, { expiresIn: "1h"});
 
         // send back the result and the token
-        res.json({result, token});
+        res.status(201).json({result, token});
     } catch (error) {
-        res.json(error);
+        res.status(500).json(error);
     }
 };
 

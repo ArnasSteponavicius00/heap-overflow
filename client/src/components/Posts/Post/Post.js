@@ -10,6 +10,11 @@ const Post = ( { post, setCurrentId } ) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
+    const handleClick = (e) => {
+      setCurrentId(post._id);
+      console.log(post._id);
+    }
+
     return (
         <Card className={classes.card}>
           <div className={classes.header}>
@@ -25,7 +30,7 @@ const Post = ( { post, setCurrentId } ) => {
             </div>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))} >Like {post.likeCounter} </Button>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(dislikePost(post._id))}>Dislike {post.dislikeCounter}</Button>
-            <Button size="small" className={classes.qButton} onClick={() => setCurrentId(post._id)}>Edit</Button>
+            <Button size="small" className={classes.qButton} onClick={handleClick}>Edit</Button>
             <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
          </CardActions>
         </Card>

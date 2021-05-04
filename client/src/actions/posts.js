@@ -48,6 +48,7 @@ export const likePost = (id) => async (dispatch) => {
         const { data } = await api.likePost(id);
         const action = { type: 'LIKE_POST', payload: id};
         dispatch(action);
+        window.location.reload();
     } catch (error) {
         console.log(error);
     }
@@ -58,6 +59,7 @@ export const dislikePost = (id) => async (dispatch) => {
         await api.dislikePost(id);
         const action = { type: 'DISLIKE_POST', payload: id};
         dispatch(action);
+        window.location.reload();
     } catch (error) {
         console.log(error);
     }

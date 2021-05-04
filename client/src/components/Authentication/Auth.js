@@ -4,6 +4,7 @@ import { Button, Paper, Grid, Typography, Container, TextField } from '@material
 import useStyles from './styles';
 
 const Auth = () => {
+    const state = null;
     const classes = useStyles();
     const signedUp = false;
 

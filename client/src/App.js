@@ -4,8 +4,8 @@ import { Container, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 
-import Posts from './components/Posts/Posts';
 import NavBar from './components/NavBar/NavBar';
+import Home from './components/Home/Home';
 import Auth from './components/Authentication/Auth';
 
 function App() {
@@ -21,19 +21,12 @@ function App() {
         <BrowserRouter>
             <NavBar currentId={currentId} setCurrentId={setCurrentId} />
             <Container maxWidth="lg">
-                <Grow in>
-                    <Container>
-                        <Switch>
-                            <Grid container direction="row" justify="space-between" alignItems="center" spacing={4}>       
-                                <Grid item xs={12} sm={12}>
-                                    <Route path="/"><Posts setCurrentId={setCurrentId} /></Route> 
-                                </Grid>
-                            </Grid>
-                        </Switch>
-                        <Auth />
-                    </Container>
-                </Grow>
+                <Switch>
+                    <Route exact path="/"><Home setCurrentId={setCurrentId} /></Route>
+                    <Route exact path="/auth" component={Auth} />
+                </Switch>
             </Container>
+
         </BrowserRouter>
     );
 }

@@ -27,6 +27,7 @@ export default makeStyles({
   details: {
     margin: '0px 10px',
     right: '20px',
+    backgroundColor: '#EDEDED',
   },
   cardActions: {
     padding: '2px 5px 5px 10px',

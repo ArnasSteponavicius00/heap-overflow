@@ -5,8 +5,7 @@ import { AppBar, Typography, Button, Toolbar } from '@material-ui/core';
 import Form from '../Form/Form';
 import useStyles from './styles';
 
-const NavBar = () => {
-    const [ currentId, setCurrentId ] = useState(null);
+const NavBar = ( { currentId, setCurrentId } ) => {
     const classes = useStyles();
 
     return(
@@ -17,9 +16,7 @@ const NavBar = () => {
                     <Link to='/question'><Button className={classes.qButton}>POST</Button></Link>
                 </div>
             </AppBar>
-            <Switch>
-                <Route path="/question"><Form currentId={currentId} setCurrentId={setCurrentId}/></Route>
-            </Switch>
+            <Route path="/question"><Form currentId={currentId} setCurrentId={setCurrentId}/></Route> 
         </BrowserRouter>
     );
 }

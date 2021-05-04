@@ -22,10 +22,10 @@ const Auth = () => {
                 <Typography variant="h5">{signedUp ? 'Sign Up' : 'Sign In'}</Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
-                        <Grid xs={6} md={12}>
+                        <Grid xs={6} md={6}>
                             <TextField name="fName" label="First Name" handleChange={handleChange} autoFocus xs={6}/>
                         </Grid>
-                        <Grid xs={6} md={12}>
+                        <Grid xs={6} md={6}>
                             <TextField name="lName" label="Last Name" handleChange={handleChange} autoFocus xs={6}/>
                         </Grid>
                     </Grid>

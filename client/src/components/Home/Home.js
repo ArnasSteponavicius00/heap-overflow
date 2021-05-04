@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { Container, Grow, Grid } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { getPosts } from '../../actions/posts';
 
 import Posts from '../Posts/Posts';
-import Auth from '../Authentication/Auth';
 
 const Home = ( {setCurrentId } ) => {
     return (
@@ -19,7 +16,6 @@ const Home = ( {setCurrentId } ) => {
                             </Grid>
                         </Grid>
                     </Switch>
-                    <Auth />
                 </Container>
             </Grow>
         </BrowserRouter>

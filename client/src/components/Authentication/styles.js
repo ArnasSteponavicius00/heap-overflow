@@ -12,4 +12,13 @@ export default makeStyles((theme) => ({
       width: '100%',
       marginTop: theme.spacing(3),
     },
+    qButton: {
+      margin: '20px 0px 0px 125px',
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontSize: '15px',
+      borderRadius: 15,
+      fontWeight: 600,
+      color: '#FFFFFF',
+    },
   }));

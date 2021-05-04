@@ -26,7 +26,6 @@ function App() {
                     <Route exact path="/auth" component={Auth} />
                 </Switch>
             </Container>
-
         </BrowserRouter>
     );
 }

@@ -23,12 +23,34 @@ const signin = async (req, res) => {
 };
 
 const signup = async (req, res) => {
+    // expected variables when the request is made
     const { email, password, confirmPassword, fName, lName } = req.body;
 
     try {
-        const result = await User.create( {email, password, name: `${fName} ${lName}`} );
+        // use mongoose to look for a user with the email from the request we got above
+        const findUser = await User.findOne({ email });
 
-        res.json({result});
+        // check whether the user is the database, if there is a user with the email
+        // send back the response user already exists
+        if(findUser) {
+            return res.send("User exists");
+        }
+        // check if the passwords match
+        if( password !== confirmPassword) {
+            return res.send("Password does not match.");
+        }
+
+        // make an asynchronous request to hash the password, the 10 is the salt level
+        const hash = await bcrypt.hash(password, 10);
+        // create the user and store it
+        const user = await User.create( {email, password: hash, name: `${fName} ${lName}`} )
+
+        // assign a web token to the payload, in this case the email and the id, salt the token with the environmental variable
+        // and have it expire after an hour
+        const token = jwt.sign( {email: result.email, id: result._id}, process.env.SECRET_KEY, { expiresIn: "1h"});
+
+        // send back the result and the token
+        res.json({user: user, token});
     } catch (error) {
         res.json(error);
     }

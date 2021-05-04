@@ -10,7 +10,7 @@ import { signin, signup} from '../../actions/auth';
 const initialState = { fName: '', lName: '', email: '', password: '', confirmPassword: ''};
 
 const Auth = () => {
-    const [data, setData] = useState(initialState);
+    const [formData, setFormData] = useState(initialState);
     const [signedUp, setSignedUp] = useState(false);
     const classes = useStyles();
     const history = useHistory();
@@ -19,16 +19,16 @@ const Auth = () => {
     //https://reactgo.com/react-router-usehistory-hook/
     // spread the data of the form, get the target name and set the value
     const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value})
+        setFormData({ ...formData, [e.target.name]: e.target.value})
     };
 
     // functions to execute when user submits
     const handleSubmit = (e) => { 
         e.preventDefault();
         if(signedUp) {
-            dispatch(signup(data, history));
+            dispatch(signup(formData, history));
         } else {
-            dispatch(signin(data, history));
+            dispatch(signin(formData, history));
         }
     };
 
@@ -36,7 +36,7 @@ const Auth = () => {
     // ref: https://www.valentinog.com/blog/react-object-is/
     // handling states to go between two states to change form display based on it
     const switchSignIn = () => {
-        setData(initialState);
+        setFormData(initialState);
         setSignedUp((prevSignedUp) => !prevSignedUp);
     };
 

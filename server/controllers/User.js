@@ -36,7 +36,7 @@ const signin = async (req, res) => {
         const token = jwt.sign( {email: findUser.email, id: findUser._id}, process.env.SECRET_KEY, { expiresIn: "1h"});
 
         // send back the user
-        res.json({user: findUser, token});
+        res.json({result: findUser, token});
     } catch (error) {
         res.json(error);
     }
@@ -63,14 +63,14 @@ const signup = async (req, res) => {
         // make an asynchronous request to hash the password, the 10 is the salt level
         const hash = await bcrypt.hash(password, 10);
         // create the user and store it
-        const user = await User.create( {email, password: hash, name: `${fName} ${lName}`} )
+        const result = await User.create( {email, password: hash, name: `${fName} ${lName}`} )
 
         // assign a web token to the payload, in this case the email and the id, salt the token with the environmental variable
         // and have it expire after an hour
         const token = jwt.sign( {email: result.email, id: result._id}, process.env.SECRET_KEY, { expiresIn: "1h"});
 
         // send back the result and the token
-        res.json({user: user, token});
+        res.json({result, token});
     } catch (error) {
         res.json(error);
     }

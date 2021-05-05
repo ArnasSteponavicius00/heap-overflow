@@ -22,6 +22,7 @@ const NavBar = ( { currentId, setCurrentId } ) => {
     const logOut = () => {
         dispatch({ type: "LOGOUT" });
         history.push('/');
+        window.location.reload();
         setUser(null);
     };
 
@@ -35,7 +36,6 @@ const NavBar = ( { currentId, setCurrentId } ) => {
                     {/* Ternary operation to display different objects in the toolbar based on whether user is logged in or not */}
                     { user ? (
                         <div>
-                            <Link to='/question'><Button className={classes.qButton}>POST</Button></Link>
                             <Button className={classes.qButton} onClick={logOut}>Logout</Button>
                         </div>
                     ) : (
@@ -44,8 +44,7 @@ const NavBar = ( { currentId, setCurrentId } ) => {
                         </div>
                     )}
                 </Toolbar>
-            </AppBar>
-            <Route path="/question"><Form currentId={currentId} setCurrentId={setCurrentId}/></Route> 
+            </AppBar> 
         </Container>
     );
 }

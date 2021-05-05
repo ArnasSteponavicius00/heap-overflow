@@ -9,11 +9,12 @@ import useStyles from './styles'; // https://material-ui.com/styles/api/#makesty
 
 const Form = ({ currentId, setCurrentId}) => {
 
-    const [postData, setPostData] = useState({title: '', message: '', user: '', file: ''});
+    const [postData, setPostData] = useState({title: '', message: '', file: ''});
     const post = useSelector((state) => (currentId ? state.posts.find((title) => title._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
     const history = useHistory();
+    const loggedInUser = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(() => {
         if(post) setPostData(post);
@@ -23,13 +24,13 @@ const Form = ({ currentId, setCurrentId}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(currentId){
-            dispatch(updatePost(currentId, postData, history)); 
-            console.log("Updated Post");
-        } else {
+        if(currentId === 0){
             // pass in the state data
-            dispatch(createPost(postData, history));
+            dispatch(createPost({...postData, name: loggedInUser?.result?.name}, history));
             console.log("Submitted data");
+        } else {
+            dispatch(updatePost(currentId, {...postData, name: loggedInUser?.result?.name}, history)); 
+            console.log("Updated Post");
         }
         
         clear();
@@ -37,7 +38,17 @@ const Form = ({ currentId, setCurrentId}) => {
 
     const clear = () => {
         setCurrentId(null);
-        setPostData({title: '', message: '', user: '', file: ''});
+        setPostData({title: '', message: '', file: ''});
+    }
+
+    if(!loggedInUser?.result?.name) {
+        return (
+            <Paper className={classes.paper}>
+                <Typography variant="h6" align="center">
+                    Please sign in to create posts or comment.
+                </Typography>
+            </Paper>
+        );
     }
 
     return (
@@ -50,10 +61,7 @@ const Form = ({ currentId, setCurrentId}) => {
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} 
                            onChange={(e) => setPostData({...postData, message: e.target.value})}
                 />
-                <TextField name="user" variant="outlined" label="User" fullWidth value={postData.user} 
-                           onChange={(e) => setPostData({...postData, user: e.target.value})}
-                />
-                <Button variant="contained" color="primary" size="large" type="submit">
+                <Button variant="contained" color="secondary" size="large" type="submit">
                     Submit
                 </Button>
             </form>

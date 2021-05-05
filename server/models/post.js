@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
     title: String,
     message: String,
+    name: String,
     user: String,
     file: String,
     likeCounter: {

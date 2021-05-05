@@ -24,7 +24,8 @@ const getPosts = async (req, res) => {
 const createPosts = async (req, res) => {
     const post = req.body;
 
-    const newPost = new Post(post);
+    // spread the data/params of the post and assign the token id to user
+    const newPost = new Post({...post, user: req.userId});
 
     try {
         await newPost.save();

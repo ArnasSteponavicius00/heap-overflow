@@ -29,12 +29,10 @@ const Post = ( { post, setCurrentId } ) => {
 
     const handleChange = (e) => {
       setCurrentId(post._id);
-      history.push('/question');
     }
 
     return (
       <Container>  
-
         <Card className={classes.card}>
           <div className={classes.header}>
             <Link to='/singlepost'><Typography variant="h6">{post.title}</Typography></Link>
@@ -47,12 +45,11 @@ const Post = ( { post, setCurrentId } ) => {
             <div className={classes.postDiv}>
               <Typography className={classes.details} variant="body2">Posted by {post.user} {moment(post.createdAt).fromNow()}</Typography>
             </div>
-            <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))} ><Likes/ ></Button>
+            <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))}><Likes /></Button>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(dislikePost(post._id))}>Dislike {post.dislikeCounter}</Button>
             <Button size="small" className={classes.qButton} onClick={handleChange}>Edit</Button>
             <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
          </CardActions>
-         
         </Card>
       </Container>
     );

@@ -11,6 +11,11 @@ const auth = async (req, res, next) => {
     try {
         // get the authorization header from the request, which is the bearer token
         const token = req.headers.authorization.split(" ")[1];
+
+        if(token == undefined) {
+          console.log({message: "User not logged in."});
+        }
+
         let decodedData;
         
         // decode the token using the secret key
@@ -27,5 +32,5 @@ const auth = async (req, res, next) => {
 
 // export the functions
 module.exports = {
-    auth
+    auth,
 };

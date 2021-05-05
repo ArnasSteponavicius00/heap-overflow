@@ -12,6 +12,20 @@ const Post = ( { post, setCurrentId } ) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
+    const user = JSON.parse(localStorage.getItem('profile'));
+
+    // referenced and adapted from: https://www.youtube.com/watch?v=LKlO8vLvUao
+    const Likes = () => {
+      if (post.likeCounter.length > 0) {
+        return post.likeCounter.find((likeCounter) => likeCounter === (user?.result?._id))
+          ? (
+            <>&nbsp;{post.likeCounter.length > 2 ? `You and ${post.likeCounter.length - 1} others` : `${post.likeCounter.length} like${post.likeCounter.length > 1 ? 's' : ''}` }</>
+          ) : (
+            <>&nbsp;{post.likeCounter.length} {post.likeCounter.length === 1 ? 'Like' : 'Likes'}</>
+          );
+      }
+      return <>&nbsp;Like</>;
+    };
 
     const handleChange = (e) => {
       setCurrentId(post._id);
@@ -19,7 +33,8 @@ const Post = ( { post, setCurrentId } ) => {
     }
 
     return (
-      <Container>
+      <Container>  
+
         <Card className={classes.card}>
           <div className={classes.header}>
             <Link to='/singlepost'><Typography variant="h6">{post.title}</Typography></Link>
@@ -32,7 +47,7 @@ const Post = ( { post, setCurrentId } ) => {
             <div className={classes.postDiv}>
               <Typography className={classes.details} variant="body2">Posted by {post.user} {moment(post.createdAt).fromNow()}</Typography>
             </div>
-            <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))} >Like {post.likeCounter} </Button>
+            <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))} ><Likes/ ></Button>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(dislikePost(post._id))}>Dislike {post.dislikeCounter}</Button>
             <Button size="small" className={classes.qButton} onClick={handleChange}>Edit</Button>
             <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>

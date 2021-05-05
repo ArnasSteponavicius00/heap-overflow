@@ -11,8 +11,8 @@ const PostSchema = new Schema({
     user: String,
     file: String,
     likeCounter: {
-        type: Number,
-        default: 0
+        type: [String],
+        default: [],
     },
     dislikeCounter: {
         type: Number,

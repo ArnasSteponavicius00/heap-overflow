@@ -75,6 +75,11 @@ const deletePost = async (req, res) => {
 const likePost = async (req, res) => {
     const { id: _id } = req.params;
 
+    // verify that person is user
+    if(!req.userId) {
+        return res.json({message: 'Not a user.'});
+    }
+
     // check whether the post has a valid id in the mongo database, if not
     // return a 404
     if(!mongoose.Types.ObjectId.isValid(_id)) {
@@ -82,7 +87,18 @@ const likePost = async (req, res) => {
     }
 
     const post = await Post.findById(_id);
-    const updatedPost = await Post.findByIdAndUpdate(_id, { likeCounter: post.likeCounter + 1 }, { new: true });
+
+    // callback function that loops through all id's
+    const index = post.likeCounter.findIndex((id) => id == String(req.userId));
+
+    // check if the user has already like a post
+    if(index === -1) {
+        post.likeCounter.push(req.userId);
+    } else {
+        post.likeCounter = post.likeCounter.filter((id) => id !== String(req.userId));
+    }
+
+    const updatedPost = await Post.findByIdAndUpdate(_id, post, { new: true });
 
     res.json(updatedPost);
 }

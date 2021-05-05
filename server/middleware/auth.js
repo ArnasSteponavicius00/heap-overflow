@@ -1,3 +1,4 @@
+const express = require('express');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv'); 
 
@@ -20,4 +21,7 @@ const auth = async (req, res, next) => {
       }
 };
 
-export default auth;
+// export the functions
+module.exports = {
+    auth
+};

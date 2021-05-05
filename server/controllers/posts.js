@@ -107,6 +107,11 @@ const likePost = async (req, res) => {
 const dislikePost = async (req, res) => {
     const { id: _id } = req.params;
 
+    // verify that person is user
+    if(!req.userId) {
+        return res.json({message: 'Not a user.'});
+    }
+
     // check whether the post has a valid id in the mongo database, if not
     // return a 404
     if(!mongoose.Types.ObjectId.isValid(_id)) {
@@ -114,7 +119,18 @@ const dislikePost = async (req, res) => {
     }
 
     const post = await Post.findById(_id);
-    const updatedPost = await Post.findByIdAndUpdate(_id, { dislikeCounter: post.dislikeCounter + 1 }, { new: true });
+
+    // callback function that loops through all id's
+    const index = post.dislikeCounter.findIndex((id) => id == String(req.userId));
+
+    // check if the user has already like a post
+    if(index === -1) {
+        post.dislikeCounter.push(req.userId);
+    } else {
+        post.dislikeCounter = post.dislikeCounter.filter((id) => id !== String(req.userId));
+    }
+
+    const updatedPost = await Post.findByIdAndUpdate(_id, post, { new: true });
 
     res.json(updatedPost);
 }

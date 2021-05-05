@@ -16,8 +16,8 @@ const PostSchema = new Schema({
         default: [],
     },
     dislikeCounter: {
-        type: Number,
-        default: 0
+        type: [String],
+        default: [],
     },
     createdAt: {
         default: Date.now(),

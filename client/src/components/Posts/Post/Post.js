@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Route, Link, useHistory } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { Card, CardActions, Button, Typography, Container } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost, dislikePost } from '../../../actions/posts';
@@ -11,7 +11,6 @@ import SinglePost from '../SinglePost/SinglePost';
 const Post = ( { post, setCurrentId } ) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const history = useHistory();
     const user = JSON.parse(localStorage.getItem('profile'));
 
     // referenced and adapted from: https://www.youtube.com/watch?v=LKlO8vLvUao
@@ -25,6 +24,18 @@ const Post = ( { post, setCurrentId } ) => {
           );
       }
       return <>&nbsp;Like</>;
+    };
+
+    const Dislikes = () => {
+      if (post.dislikeCounter.length > 0) {
+        return post.dislikeCounter.find((dislikeCounter) => dislikeCounter === (user?.result?._id))
+          ? (
+            <>&nbsp;{post.dislikeCounter.length > 2 ? `You and ${post.dislikeCounter.length - 1} others` : `${post.dislikeCounter.length} Dislike${post.dislikeCounter.length > 1 ? 's' : ''}` }</>
+          ) : (
+            <>&nbsp;{post.dislikeCounter.length} {post.dislikeCounter.length === 1 ? 'Dislike' : 'Dislikes'}</>
+          );
+      }
+      return <>&nbsp;Dislike</>;
     };
 
     const handleChange = (e) => {
@@ -43,11 +54,11 @@ const Post = ( { post, setCurrentId } ) => {
           
           <CardActions className={classes.cardActions}>
             <div className={classes.postDiv}>
-              <Typography className={classes.details} variant="body2">Posted by {post.user} {moment(post.createdAt).fromNow()}</Typography>
+              <Typography className={classes.details} variant="body2">Posted by {post.name} {moment(post.createdAt).fromNow()}</Typography>
             </div>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))}><Likes /></Button>
-            <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(dislikePost(post._id))}>Dislike {post.dislikeCounter}</Button>
-            <Button size="small" className={classes.qButton} onClick={handleChange}>Edit</Button>
+            <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(dislikePost(post._id))}><Dislikes /></Button>
+            <Button size="small" className={classes.qButton} onClick={ handleChange }>Edit</Button>
             <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
          </CardActions>
         </Card>

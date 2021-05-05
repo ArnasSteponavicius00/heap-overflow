@@ -20,13 +20,11 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
   },
   qButton: {
-    margin: '10px 0px 2px 35px',
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '15px',
     borderRadius: 15,
     fontWeight: 600,
-    bottom: '2px',
     color: '#FFFFFF',
   }
 }));

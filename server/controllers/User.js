@@ -20,7 +20,7 @@ const signin = async (req, res) => {
 
         // check whether the user is the database, if not return a 404
         if(!findUser) {
-            return res.send("Can't find user with entered email.");
+            return res.status(404).send("Can't find user with entered email.");
         }
 
         // use bcrypt to compare the entered password with the password returned from the database
@@ -28,7 +28,7 @@ const signin = async (req, res) => {
 
         // if the password does not match return an error
         if(!checkPassword) {
-            return res.send("Password does not match.");
+            return res.status(400).send("Password does not match.");
         }
 
         // assign a web token to the payload, in this case the email and the id, salt the token with the environmental variable

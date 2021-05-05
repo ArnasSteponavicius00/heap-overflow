@@ -36,7 +36,7 @@ const NavBar = ( { currentId, setCurrentId } ) => {
                     { user ? (
                         <div>
                             <Link to='/question'><Button className={classes.qButton}>POST</Button></Link>
-                            <Button color="secondary" onClick={logOut}>Logout</Button>
+                            <Button className={classes.qButton} onClick={logOut}>Logout</Button>
                         </div>
                     ) : (
                         <div>

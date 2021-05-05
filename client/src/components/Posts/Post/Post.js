@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { deletePost, likePost, dislikePost } from '../../../actions/posts';
 
 import useStyles from './styles'; // https://material-ui.com/styles/api/#makestyles-styles-options-hook
-import SinglePost from '../SinglePost/SinglePost';
 
 const Post = ( { post, setCurrentId } ) => {
     const classes = useStyles();
@@ -39,6 +38,7 @@ const Post = ( { post, setCurrentId } ) => {
     };
 
     const handleChange = (e) => {
+      e.preventDefault();
       setCurrentId(post._id);
     }
 
@@ -64,6 +64,11 @@ const Post = ( { post, setCurrentId } ) => {
             {(user?.result?._id === post?.user) && (
               <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
             )}
+            {(user) && (
+              <Button size="small" component={Link} to="/comment" className={classes.qButton}>Comment</Button>
+            )}
+            
+            
             
          </CardActions>
         </Card>

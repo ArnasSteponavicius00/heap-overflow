@@ -2,8 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Grid, CircularProgress, Typography } from '@material-ui/core';
 import Post from './Post/Post';
+import SinglePost from './SinglePost/SinglePost';
 
 import useStyles from './styles'; // https://material-ui.com/styles/api/#makestyles-styles-options-hook
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const Posts = ({ setCurrentId }) => {
     // init hook, gain access to the store from redux
@@ -18,14 +20,18 @@ const Posts = ({ setCurrentId }) => {
         );
     } else {
         return (
-            <Grid className={classes.mainContainer} container spacing={1} xs={12} md={12}>
-                <Typography className={classes.forum} variant="h5" align="center">Forum Posts</Typography>
-                {posts.map((post) => (
-                    <Grid key={post._id} item xs={12} md={12}>
-                        <Post post={post} setCurrentId={setCurrentId} />
+            <BrowserRouter>
+                <Switch>
+                    <Grid className={classes.mainContainer} container spacing={1} xs={12} md={12}>
+                        <Typography className={classes.forum} variant="h5" align="center">Forum Posts</Typography>
+                        {posts.map((post) => (
+                            <Grid key={post._id} item xs={12} md={12}>
+                                <Post post={post} setCurrentId={setCurrentId} />
+                            </Grid>
+                        ))}
                     </Grid>
-                ))}
-            </Grid>
+                </Switch>
+            </BrowserRouter>
         );
     }
 }

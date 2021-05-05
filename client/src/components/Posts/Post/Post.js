@@ -58,7 +58,9 @@ const Post = ( { post, setCurrentId } ) => {
             </div>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))}><Likes /></Button>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(dislikePost(post._id))}><Dislikes /></Button>
-            <Button size="small" className={classes.qButton} onClick={ handleChange }>Edit</Button>
+            {(user?.result?._id === post?.user) && (
+              <Button size="small" className={classes.qButton} onClick={ handleChange }>Edit</Button>
+            )}
             {(user?.result?._id === post?.user) && (
               <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
             )}

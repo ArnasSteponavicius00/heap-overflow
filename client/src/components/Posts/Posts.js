@@ -2,10 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Grid, CircularProgress, Typography } from '@material-ui/core';
 import Post from './Post/Post';
-import SinglePost from './SinglePost/SinglePost';
 
 import useStyles from './styles'; // https://material-ui.com/styles/api/#makestyles-styles-options-hook
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 
 const Posts = ({ setCurrentId }) => {
     // init hook, gain access to the store from redux

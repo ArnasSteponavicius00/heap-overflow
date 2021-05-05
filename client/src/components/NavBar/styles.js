@@ -22,8 +22,8 @@ export default makeStyles((theme) => ({
   qButton: {
     justifyContent: 'center',
     alignItems: 'center',
+    right: '34px',
     fontSize: '15px',
-    borderRadius: 15,
     fontWeight: 600,
     color: '#FFFFFF',
   }

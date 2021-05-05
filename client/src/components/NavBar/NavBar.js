@@ -12,6 +12,13 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const logOut = () => {
+        dispatch({ type: "LOGOUT" });
+        history.push('/');
+        window.location.reload();
+        setUser(null);
+    };
+
     useEffect(() => {
         // check if the token exists in localStorage then store it in a var
         const token = user?.token;
@@ -30,13 +37,6 @@ const NavBar = () => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, []);
 
-    const logOut = () => {
-        dispatch({ type: "LOGOUT" });
-        history.push('/');
-        window.location.reload();
-        setUser(null);
-    };
-
     return(
         <Container>
             <AppBar className={classes.appBar} position="static" color="inherit" align="left">
@@ -51,7 +51,7 @@ const NavBar = () => {
                         </div>
                     ) : (
                         <div>
-                            <Button component={Link} to="/auth" color="secondary">Sign In</Button>
+                            <Button component={Link} to="/auth" className={classes.qButton}>Sign In</Button>
                         </div>
                     )}
                 </Toolbar>

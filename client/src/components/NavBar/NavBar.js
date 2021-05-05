@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppBar, Typography, Button, Toolbar, Container } from '@material-ui/core';
+import { decode } from 'jsonwebtoken';
 
-import Form from '../Form/Form';
 import useStyles from './styles'; // https://material-ui.com/styles/api/#makestyles-styles-options-hook
 
-const NavBar = ( { currentId, setCurrentId } ) => {
+const NavBar = () => {
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
@@ -15,6 +15,17 @@ const NavBar = ( { currentId, setCurrentId } ) => {
     useEffect(() => {
         // check if the token exists in localStorage then store it in a var
         const token = user?.token;
+
+        // ref: https://stackoverflow.com/questions/44982412/how-do-i-check-for-token-expiration-and-logout-user
+        if(token){
+            const decoded = decode(token);
+
+            // check if token has expired
+            if(decoded.exp * 1000 < new Date().getTime()){
+                logOut();
+                localStorage.clear();
+            }
+        }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, []);

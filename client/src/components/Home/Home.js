@@ -6,7 +6,6 @@ import { getPosts } from '../../actions/posts';
 
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
-import UserForm from '../Form/UserForm/UserForm';
 
 import useStyles from './styles'; // https://material-ui.com/styles/api/#makestyles-styles-options-hook
 
@@ -23,19 +22,14 @@ const Home = () => {
         <BrowserRouter>
             <Grow in>
                 <Container>
-                    <Switch>
                         <Grid container spacing={2}>       
                             <Grid item xs={12} sm={9}>
-                                <Route path="/"><Posts setCurrentId={setCurrentId} /></Route>
+                                <Route path="/"></Route><Posts setCurrentId={setCurrentId} />
                             </Grid>
                             <Grid item xs={12} sm={3}>
-                                <div className={classes.divUser}>
-                                    <UserForm currentId={currentId}  setCurrentId={setCurrentId}/>
-                                </div>
-                                <Route path="/"><Form currentId={currentId}  setCurrentId={setCurrentId} /></Route>
+                                <Form currentId={currentId}  setCurrentId={setCurrentId} />
                             </Grid>
                         </Grid>
-                    </Switch>
                 </Container>
             </Grow>
         </BrowserRouter>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppBar, Typography, Button, Toolbar, Container } from '@material-ui/core';
 import { decode } from 'jsonwebtoken';
@@ -47,6 +47,7 @@ const NavBar = () => {
                     {/* Ternary operation to display different objects in the toolbar based on whether user is logged in or not */}
                     { user ? (
                         <div>
+                            <Button className={classes.qButton} component={Link} to="/userdetails">Profile</Button>
                             <Button className={classes.qButton} onClick={logOut}>Logout</Button>
                         </div>
                     ) : (

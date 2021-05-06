@@ -73,6 +73,8 @@ const deletePost = async (req, res) => {
     res.json({ message: 'Post has been deleted' });
 }
 
+
+// Like a Post
 const likePost = async (req, res) => {
     const { id: _id } = req.params;
 

@@ -9,11 +9,14 @@ export default makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(5),
+    borderRadius: "15px",
   },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'left',
+    borderBlockStyle: 'solid',
+    borderColor: 'rgba(255, 0, 0)',
   },
   buttonSubmit: {
     marginBottom: 10,
@@ -21,5 +24,8 @@ export default makeStyles((theme) => ({
   divInfo: {
     justifyContent: 'left',
     paddingTop: '10px',
+  },
+  grid: {
+    paddingTop: '20px',
   },
 }));

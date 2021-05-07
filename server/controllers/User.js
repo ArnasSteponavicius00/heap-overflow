@@ -76,7 +76,18 @@ const signup = async (req, res) => {
     }
 };
 
+const deleteUser = async (req, res) => {
+    const { id: _id } = req.params;
+
+    // delete the user
+    await User.findByIdAndDelete(_id);
+
+    // send the updated post as a response
+    res.json({ message: 'User has been deleted' });
+}
+
 module.exports = {
     signin,
-    signup
+    signup,
+    deleteUser
 };

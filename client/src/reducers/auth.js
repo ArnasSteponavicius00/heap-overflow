@@ -12,7 +12,11 @@ const auth = (state = {data: null}, action) => {
         case 'LOGOUT':
             // remove the user information from localStorage
             localStorage.clear();
-            return { ...state, data: null};   
+            return { ...state, data: null};
+        case 'DELETE':
+            const { user } = action.payload;
+            localStorage.clear();
+            return user;
         default:
             return state;
     }

@@ -2,6 +2,7 @@
 // based on that action we can change the state based on it.
 // in this case, the states are the posts.
 // https://blog.jscrambler.com/async-dispatch-chaining-with-redux-thunk/
+// https://www.youtube.com/watch?v=TAgbLPaPPlc
 
 const posts = (posts = [], action) => {
     switch (action.type) {

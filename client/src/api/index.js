@@ -16,7 +16,7 @@ instance.interceptors.request.use((req) => {
     }
 
     return req;
-})
+});
 
 // Post api
 export const fetchPosts = () => instance.get('/posts');
@@ -29,3 +29,4 @@ export const dislikePost = (id) => instance.patch(`${'/posts'}/${id}/dislikePost
 // User api
 export const signIn = (formData) => instance.post('/user/signin', formData);
 export const signUp = (formData) => instance.post('/user/signup', formData);
+export const deleteUser = (id) => instance.delete(`${'/user'}/${id}`);

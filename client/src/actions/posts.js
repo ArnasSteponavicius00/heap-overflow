@@ -40,6 +40,7 @@ export const updatePost = (id, post, history) => async (dispatch) => {
     }
 }
 
+// ref: https://www.youtube.com/watch?v=TAgbLPaPPlc
 export const deletePost = (id) => async (dispatch) => {
     try {
         await api.deletePost(id);

@@ -3,6 +3,7 @@
 // in this case, the states are the posts.
 // https://blog.jscrambler.com/async-dispatch-chaining-with-redux-thunk/
 // https://www.youtube.com/watch?v=TAgbLPaPPlc
+// https://www.youtube.com/watch?v=lmyKHYmgUYc
 
 const posts = (posts = [], action) => {
     switch (action.type) {

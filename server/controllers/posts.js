@@ -37,7 +37,7 @@ const createPosts = async (req, res) => {
 
 // Update Posts
 const updatePost = async (req, res) => {
-    // get the id from the parameters and rename to _id
+    // get the id from the parameters and rename to id
     const { id: _id } = req.params;
 
     // get the post data from the body of the page
@@ -143,5 +143,5 @@ module.exports = {
     updatePost,
     deletePost,
     likePost,
-    dislikePost
+    dislikePost,
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Link} from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Card, CardActions, Button, Typography, Container } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost, dislikePost } from '../../../actions/posts';
@@ -11,6 +11,7 @@ const Post = ( { post, setCurrentId } ) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
+    const history = useHistory();
 
     // referenced and adapted from: https://www.youtube.com/watch?v=LKlO8vLvUao
     const Likes = () => {
@@ -46,7 +47,7 @@ const Post = ( { post, setCurrentId } ) => {
       <Container>  
         <Card className={classes.card}>
           <div className={classes.header}>
-            <Link to='/singlepost'><Typography variant="h6">{post.title}</Typography></Link>
+            <Typography variant="h6">{post.title}</Typography>
           </div>
           <div className={classes.messageBody}>
             <Typography variant="body2">{post.message}</Typography>
@@ -58,18 +59,13 @@ const Post = ( { post, setCurrentId } ) => {
             </div>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(likePost(post._id))}><Likes /></Button>
             <Button size="small" className={classes.qButton} color="secondary" onClick={() => dispatch(dislikePost(post._id))}><Dislikes /></Button>
+
             {(user?.result?._id === post?.user) && (
               <Button size="small" className={classes.qButton} onClick={ handleChange }>Edit</Button>
             )}
             {(user?.result?._id === post?.user) && (
               <Button size="small" className={classes.qButton} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
             )}
-            {(user) && (
-              <Button size="small" component={Link} to="/comment" className={classes.qButton}>Comment</Button>
-            )}
-            
-            
-            
          </CardActions>
         </Card>
       </Container>

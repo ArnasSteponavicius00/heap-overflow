@@ -28,7 +28,7 @@ export const deleteUser = (id) => async (dispatch) => {
   try {
     await api.deleteUser(id);
 
-    const action = { type: 'DELETE', payload: id};
+    const action = { type: 'DELETE_USER', payload: id};
     dispatch(action);
   } catch (error) {
     

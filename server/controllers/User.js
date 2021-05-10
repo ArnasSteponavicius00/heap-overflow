@@ -10,7 +10,7 @@ const dotenv = require('dotenv');
 
 // this key is only to be used when running on localhost, when deployed the key
 // will be replaced with an environmental variable
-const secretkey="heap-overflow";
+const secretkey="heap-overflow"
 
 dotenv.config();
 
@@ -37,7 +37,7 @@ const signin = async (req, res) => {
 
         // assign a web token to the payload, in this case the email and the id, salt the token with the environmental variable
         // and have it expire after an hour
-        const token = jwt.sign( {email: findUser.email, id: findUser._id}, secretkey, { expiresIn: "1h"});
+        const token = jwt.sign( {email: findUser.email, id: findUser._id}, process.env.SECRET_KEY, { expiresIn: "1h"});
 
         // send back the user
         res.status(200).json({result: findUser, token});
@@ -71,7 +71,7 @@ const signup = async (req, res) => {
 
         // assign a web token to the payload, in this case the email and the id, salt the token with the environmental variable
         // and have it expire after an hour
-        const token = jwt.sign( {email: result.email, id: result._id}, secretkey, { expiresIn: "1h"});
+        const token = jwt.sign( {email: result.email, id: result._id}, process.env.SECRET_KEY, { expiresIn: "1h"});
 
         // send back the result and the token
         res.status(201).json({result, token});

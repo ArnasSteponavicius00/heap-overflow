@@ -4,10 +4,6 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// this key is only to be used when running on localhost, when deployed the key
-// will be replaced with an environmental variable
-const secretkey="heap-overflow";
-
 // this function allows to check whether a person is a user or not, if not then they
 // wont be able to for example like/dislike a post, if they are a user next() will execute
 // and allow them to proceed with the task
@@ -23,7 +19,7 @@ const auth = async (req, res, next) => {
         let decodedData;
         
         // decode the token using the secret key
-        decodedData = jwt.verify(token, secretkey);
+        decodedData = jwt.verify(token, process.env.SECRET_KEY);
         // set the request header userId to the decoded token id
         req.userId = decodedData?.id;  
     

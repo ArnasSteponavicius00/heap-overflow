@@ -5,7 +5,7 @@
 import axios from 'axios';
 
 // create an instance of axios so that you can set up routes for multiple actions
-const instance = axios.create({ baseURL: "http://localhost:5000" });
+const instance = axios.create({ baseURL: "https://heap-overflow-fyp.herokuapp.com/" });
 
 // allows the backend to get the data by sending the header to the middleware,
 // based on the header the header sent the middleware on the server side where it gets decoded.
